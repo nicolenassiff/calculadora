@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        
+        .btn{
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            margin: 1px;
+            cursor: pointer;
+        }
+        
+        #dis{
+            line-height: 50px;
+            text-align: right;
+            width: 212px;
+            height: 50px;
+            font-size: 25px;
+            background-color: rgba(255, 255, 255, 0.438);
+            margin-bottom: 1px;
+            border-radius: 5px;
+        }
+        .container{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 380px;
+            width: 250px;
+            background-color: rgb(73, 73, 73);
+            margin-top: 100px;
+            border-radius: 5px;
+            padding-bottom: 5px;
+        }
+        table{
+            border-spacing: 5px;
+        }
+        th {
+            padding: 2px;
+        }
+        #buttonC{
+            background-color: rgb(160, 105, 105);
+        }
+        #buttonC:hover{
+            background-color: rgba(160, 105, 105, 0);
+        }
+        #button_num{
+            background-color: rgba(255, 255, 255, 0.438);
+        }
+        #button_num:hover{
+            background-color: rgba(255, 255, 255, 0);
+        }
+        #button_op{
+            background-color: rgba(255, 255, 255, 0.171);
+            font-size: 23px;
+        }
+        #button_op:hover{
+            background-color: rgba(255, 255, 255, 0);
+        }
+        #button_igual{
+            background-color: rgb(118, 160, 105);
+            height: 101px;
+        }
+        #button_igual:hover{
+            background-color: rgba(255, 255, 255, 0);
+        }
+        #button_zero{
+            background-color: rgba(255, 255, 255, 0.438);
+            width: 104px;
+        }
+        #button_zero:hover{
+            background-color: rgba(255, 255, 255, 0);
+        }
+        #titulo{
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgba(255, 255, 255, 0.438);
+            text-align: center;
+           
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <table>
+            <tr>
+                <th colspan="4" id="titulo">CALCULADORA</th>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p id="dis"></p>
+                </td>    
+            </tr>
+            <tr>
+                <td id="c">
+                    <button type="button" id="buttonC" class="btn" onclick="clean()">C</button>
+                </td> 
+                <td>
+                    <button type="button"id="button_op" class="btn" onclick="back()"><</button>
+                </td>
+                <td>
+                    <button type="button"id="button_op" class="btn" onclick="insert('/')">÷</button>
+                </td>
+                <td>
+                    <button type="button" id="button_op" class="btn" onclick="insert('*')">×</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('9')">9</button>
+                </td>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('8')">8</button>
+                </td>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('7')">7</button>
+                </td>
+                <td>
+                    <button type="button" id="button_op" class="btn" onclick="insert('-')">-</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('6')">6</button>
+                </td>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('5')">5</button>
+                </td>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('4')">4</button>
+                </td>
+                <td>
+                    <button type="button" id="button_op" class="btn" onclick="insert('+')">+</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('3')">3</button>
+                </td>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('2')">2</button>
+                </td>
+                <td>
+                    <button type="button" id="button_num" class="btn" onclick="insert('1')">1</button>
+                </td>
+                <td rowspan="2">
+                    <button type="button" id="button_igual" class="btn" onclick="calcular()">=</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="button" id="button_zero" class="btn" onclick="insert('0')">0</button>
+                </td>
+                <td>
+                    <button type="button" id="button_op" class="btn" onclick="insert('.')">.</button>
+                </td>
+                
+            </tr>
+            
+        </table>
+    </div>
+    <script>
+        function insert(num)
+        {
+            var numero = document.getElementById('dis').innerHTML;
+            document.getElementById('dis').innerHTML = numero + num;
+        }
+        function clean()
+        {
+            document.getElementById('dis').innerHTML = "";
+        }
+        function back()
+        {
+            var resultado = document.getElementById('dis').innerHTML;
+            document.getElementById('dis').innerHTML = resultado.substring(0,resultado.length -1);
+        }
+        function calcular()
+        {
+            var resultado = document.getElementById('dis').innerHTML;
+            if(resultado)
+            {
+                document.getElementById('dis').innerHTML = eval(resultado);
+            }
+            else{
+                document.getElementById('dis').innerHTML = "ERRO"
+            }
+        }
+    </script>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
